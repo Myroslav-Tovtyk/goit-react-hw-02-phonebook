@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 import { ContactForm } from '../components/ContactForm/ContactForm';
 import { ContactList } from '../components/ContactList/ContactList';
+import { Section } from './Section/Section';
 
 export class App extends Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
+  };
+
+  handleChange = e => {
+    e.preventDefault();
+    this.setState(e.target.value);
   };
 
   formValue = (values, actions) => {
     const newContact = {
+      id: nanoid(),
       name: values.name,
+      number: values.number,
     };
     this.setState(({ contacts }) => ({
       contacts: [...contacts, newContact],
     }));
+    actions.resetForm();
     console.log(this.state.contacts);
   };
 
@@ -22,21 +33,12 @@ export class App extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-        }}
-      >
-        <>
-          <ContactForm addFormInput={this.formValue} />
+      <>
+        <ContactForm formValue={this.formValue} />
+        <Section title="Contacts:">
           <ContactList renderList={this.renderList()} />
-        </>
-      </div>
+        </Section>
+      </>
     );
   }
 }

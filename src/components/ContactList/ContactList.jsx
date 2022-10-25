@@ -1,9 +1,15 @@
+import { Li, Ul } from '../ContactList/ContactList.styled';
+
 export const ContactList = ({ renderList }) => {
   return (
-    <ul>
-      {renderList.map(({ name }) => {
-        return <li>{name}</li>;
+    <Ul>
+      {renderList.map(({ id, name, number }) => {
+        return (
+          <Li key={id}>
+            {name}: {number}
+          </Li>
+        );
       })}
-    </ul>
+    </Ul>
   );
 };
