@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
 
@@ -20,27 +20,18 @@ const schema = Yup.object({
 });
 
 export const ContactForm = ({ formValue }) => {
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-    },
-    onSubmit: (values, actions) => {
-      formValue = values;
-      actions.resetForm();
-      console.log(formValue);
-    },
-  });
-
   return (
-    <Formik validationSchema={schema}>
-      <Form autoComplete="off" onSubmit={formik.handleSubmit}>
+    <Formik
+      validationSchema={schema}
+      initialValues={{ name: 'dgdgd' }}
+      onSubmit={formValue}
+    >
+      <Form autoComplete="off">
         <label htmlFor="name">
           Name
           <Field
             type="text"
             name="name"
-            onChange={formik.handleChange}
-            value={formik.values.name}
             // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
