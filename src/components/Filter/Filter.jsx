@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import { Label, Input } from 'components/Filter/Filter.styled';
+
 export const Filter = ({ handleChange }) => {
   return (
     <dir>
@@ -8,4 +10,8 @@ export const Filter = ({ handleChange }) => {
       </Label>
     </dir>
   );
+};
+
+Filter.propTypes = {
+  handleChange: PropTypes.func.isRequired,
 };

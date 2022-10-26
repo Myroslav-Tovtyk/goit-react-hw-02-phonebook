@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -62,4 +62,8 @@ export const ContactForm = ({ formValue }) => {
       </FormikForm>
     </Formik>
   );
+};
+
+ContactForm.protoType = {
+  formValue: PropTypes.func.isRequired,
 };

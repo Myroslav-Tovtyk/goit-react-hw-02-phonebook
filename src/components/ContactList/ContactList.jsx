@@ -1,4 +1,5 @@
 import { Li, Ul, Button } from '../ContactList/ContactList.styled';
+import PropTypes from 'prop-types';
 
 export const ContactList = ({ renderList, deleteContact }) => {
   return (
@@ -15,4 +16,15 @@ export const ContactList = ({ renderList, deleteContact }) => {
       })}
     </Ul>
   );
+};
+
+ContactList.propTypes = {
+  renderList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.number.isRequired,
+    })
+  ),
+  deleteContact: PropTypes.func.isRequired,
 };
