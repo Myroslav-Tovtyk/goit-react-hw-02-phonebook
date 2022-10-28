@@ -51,13 +51,11 @@ export class App extends Component {
         )
       : this.state.contacts;
   };
+
   deleteContact = e => {
-    this.setState(
-      this.state.contacts.splice(
-        this.state.contacts.findIndex(contact => contact.id === e.target.id),
-        1
-      )
-    );
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(contact => contact.id !== e.target.id),
+    }));
   };
 
   render() {
